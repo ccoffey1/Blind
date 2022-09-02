@@ -251,3 +251,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0bcd7024b0deac4cb264849401a7adb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDeathSound: {fileID: 8300000, guid: c3a0f8afd69b2744dbcd75858cadfca1, type: 3}
+  soundProjectilesOnDeath: 100

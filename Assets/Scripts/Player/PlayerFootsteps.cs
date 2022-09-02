@@ -97,7 +97,7 @@ public class PlayerFootsteps : MonoBehaviour
                     lastFoot = FootType.LEFT;
                 }
                 lastFootprint = transform.position;
-                SoundManager.Instance.SpawnSound(decalTransform.position, 80, soundBulletSpeed, 2f, spawnedBy: gameObject);
+                SoundManager.Instance.SpawnSound(decalTransform.position, 50, soundBulletSpeed, 2f, spawnedBy: gameObject);
 
                 // Play sound.
                 float vol = Random.Range(0.3f, 1f);

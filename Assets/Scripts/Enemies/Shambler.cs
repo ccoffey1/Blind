@@ -91,7 +91,7 @@ public class Shambler : MonoBehaviour
         if (soundBullet.SpawnedBy != gameObject && soundBullet.SpawnTime > lastReceivedBulletAtTime)
         {
             lastReceivedBulletAtTime = soundBullet.SpawnTime;
-            chaseTargetLocation = soundBullet.SpawnedFrom;
+            chaseTargetLocation = soundBullet.SpawnOrigin;
         }
     }
 }

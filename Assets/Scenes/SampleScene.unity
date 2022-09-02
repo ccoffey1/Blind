@@ -728,7 +728,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6000447, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1090,11 +1090,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &566099103 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8897686214010714376, guid: 552f971d5c0f2d649879ce12e77c9522, type: 3}
-  m_PrefabInstance: {fileID: 8897686214899702579}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &570814208
 GameObject:
   m_ObjectHideFlags: 0
@@ -1661,18 +1656,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8897686214010714381, guid: 552f971d5c0f2d649879ce12e77c9522, type: 3}
   m_PrefabInstance: {fileID: 8897686214899702579}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1292051013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 566099103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0bcd7024b0deac4cb264849401a7adb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1320679575
 GameObject:
   m_ObjectHideFlags: 0
@@ -3165,10 +3148,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8897686214010714376, guid: 552f971d5c0f2d649879ce12e77c9522, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 8897686214010714381, guid: 552f971d5c0f2d649879ce12e77c9522, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3212,10 +3191,6 @@ PrefabInstance:
     - target: {fileID: 8897686214010714381, guid: 552f971d5c0f2d649879ce12e77c9522, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8897686214010714483, guid: 552f971d5c0f2d649879ce12e77c9522, type: 3}
-      propertyPath: footstepPoolInitialSize
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 552f971d5c0f2d649879ce12e77c9522, type: 3}

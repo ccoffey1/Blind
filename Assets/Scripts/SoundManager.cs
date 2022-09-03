@@ -10,7 +10,7 @@ public class SoundManager : MonoBehaviour
 
     private ObjectPool<SoundBullet> pool;
 
-    private float radius = 1f;
+    private const float Radius = 1f;
 
     private void Awake()
     {
@@ -39,11 +39,11 @@ public class SoundManager : MonoBehaviour
         for (int i = 0; i <= numberOfProjectiles - 1; i++)
         {
             // Direction calculations.
-            float projectileDirXPosition = soundOrigin.x + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
-            float projectileDirYPosition = soundOrigin.y + Mathf.Cos((angle * Mathf.PI) / 180) * radius;
+            float projectileDirXPosition = soundOrigin.x + Mathf.Sin((angle * Mathf.PI) / 180) * Radius;
+            float projectileDirYPosition = soundOrigin.y + Mathf.Cos((angle * Mathf.PI) / 180) * Radius;
 
             // Create vectors.
-            Vector2 projectileVector = new Vector2(projectileDirXPosition, projectileDirYPosition);
+            Vector2 projectileVector = new(projectileDirXPosition, projectileDirYPosition);
             Vector2 projectileMoveDirection = (projectileVector - soundOrigin).normalized * speed;
 
             pool.Get().Spawn(soundOrigin,

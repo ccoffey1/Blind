@@ -20,7 +20,6 @@ public class PlayerClap : MonoBehaviour
     private AudioClip clapSound;
 
     private AudioSource audioSource;
-    private bool clapped;
 
     private void Awake()
     {

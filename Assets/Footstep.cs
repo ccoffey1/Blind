@@ -23,10 +23,10 @@ public class Footstep : MonoBehaviour
                       Color? color = null)
     {
         spriteRenderer.material.color = color ?? Color.white;
+        spriteRenderer.flipY = footType == FootType.LEFT;
 
         transform.SetPositionAndRotation(sourceTransform.position, sourceTransform.rotation);
         transform.Translate(0, offset, 0, sourceTransform);
-        transform.Rotate(0, 0, -90f); // TODO: update prefab to start at -90
 
         StartCoroutine(FadeOut(fadeSpeed));
 

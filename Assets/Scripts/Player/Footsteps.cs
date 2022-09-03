@@ -64,7 +64,7 @@ public class Footsteps : MonoBehaviour
                 }
                 else
                 {
-                    footstepPosition = footstep.Spawn(transform, FootType.RIGHT, fadeSpeed, footSpacing);
+                    footstepPosition = footstep.Spawn(transform, FootType.LEFT, fadeSpeed, footSpacing);
                     lastFoot = FootType.LEFT;
                 }
 

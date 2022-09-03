@@ -6,11 +6,21 @@ public class TerrainSound : MonoBehaviour
     [SerializeField]
     private TerrainType terrainType;
 
+    [SerializeField]
+    private AudioClip[] terrainFootstepClips;
+
+    private Footsteps playerFootsteps;
+
+    private void Awake()
+    {
+        playerFootsteps = GameObject.FindGameObjectWithTag("Player").GetComponent<Footsteps>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            print("Player entered terrain of type " + terrainType);
+            playerFootsteps.TerrainFootstepClips = terrainFootstepClips;
         }
     }
 
@@ -18,7 +28,7 @@ public class TerrainSound : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            print("Player has left terrain of type " + terrainType);
+            playerFootsteps.TerrainFootstepClips = null;
         }
     }
 }

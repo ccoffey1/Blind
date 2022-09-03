@@ -4,6 +4,8 @@ using UnityEngine.Pool;
 
 public class Footsteps : MonoBehaviour
 {
+    public AudioClip[] TerrainFootstepClips { get; set; }
+
     [SerializeField]
     private Footstep footstepPrefab;
 
@@ -26,7 +28,6 @@ public class Footsteps : MonoBehaviour
 
     private Vector3 positionDuringLastFootprint;
     private FootType lastFoot;
-    private AudioClip[] terrainFootstepClips;
     private ObjectPool<Footstep> pool;
     private AudioSource audioSource;
 
@@ -42,8 +43,6 @@ public class Footsteps : MonoBehaviour
         positionDuringLastFootprint = transform.position;
         lastFoot = FootType.LEFT;
     }
-
-    private int footstepIdx = 0;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -69,12 +68,7 @@ public class Footsteps : MonoBehaviour
                 }
 
                 positionDuringLastFootprint = transform.position;
-                SoundManager.Instance.SpawnSound(footstepPosition, 50, soundBulletSpeed, 2f, spawnedBy: gameObject);
-
-                // Play sound.
-                float vol = Random.Range(0.3f, 1f);
-                audioSource.PlayOneShot(defaultFootstepClips[footstepIdx], vol);
-                footstepIdx = (footstepIdx + 1) % defaultFootstepClips.Length;
+                GenerateFootstepSound(footstepPosition);
             }
         }
     }
@@ -94,5 +88,16 @@ public class Footsteps : MonoBehaviour
     private void OnReturnFootstepToPool(Footstep footstep)
     {
         footstep.gameObject.SetActive(false);
+    }
+
+    private int footstepIdx = 0;
+
+    private void GenerateFootstepSound(Vector2 spawnAt)
+    {
+        AudioClip[] footstepClips = TerrainFootstepClips ?? defaultFootstepClips;
+        float vol = Random.Range(0.3f, 1f);
+        footstepIdx = (footstepIdx + 1) % footstepClips.Length;
+        audioSource.PlayOneShot(footstepClips[footstepIdx], vol);
+        SoundManager.Instance.SpawnSound(spawnAt, 50, soundBulletSpeed, 2f, spawnedBy: gameObject);
     }
 }

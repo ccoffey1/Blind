@@ -85,21 +85,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dee2ec0dbd77de48ae4367336e97352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftPrefab: {fileID: 3528877382331515281, guid: 1e4c42e7d0fdd5d47bacb7353ff5c10e, type: 3}
-  rightPrefab: {fileID: 4911613343758367791, guid: 58f79fb44ea45884e82b516056c14686, type: 3}
-  soundBulletPrefab: {fileID: 8685368023016045717, guid: 43641c15a159ae54db3562a06bc8ae38, type: 3}
-  footstepPoolInitialSize: 1
-  footstepPoolGrowthSize: 5
+  footstepPrefab: {fileID: 8212465308225043669, guid: 58f79fb44ea45884e82b516056c14686, type: 3}
   footstepDistance: 0.6
   footSpacing: 0.1
   fadeSpeed: 1
   soundBulletSpeed: 5
-  footstepClips:
+  defaultFootstepClips:
   - {fileID: 8300000, guid: c1b3b9a301da5924e885c09bcd9b2496, type: 3}
   - {fileID: 8300000, guid: a9b3f06df06e822448619cc58145a948, type: 3}
   - {fileID: 8300000, guid: 1f8583a668bfb544b99d12bd03b74712, type: 3}
   - {fileID: 8300000, guid: c452f362a9fa69c4daf9006e01c2739d, type: 3}
-  playerWalking: 0
 --- !u!61 &8897686214010714482
 BoxCollider2D:
   m_ObjectHideFlags: 0

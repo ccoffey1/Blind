@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -24,7 +22,6 @@ public class SoundManager : MonoBehaviour
     {
         var sound = Instantiate(soundPrefab);
         sound.Pool = pool;
-        sound.gameObject.SetActive(true);
         return sound;
     }
 
@@ -49,8 +46,7 @@ public class SoundManager : MonoBehaviour
             Vector2 projectileVector = new Vector2(projectileDirXPosition, projectileDirYPosition);
             Vector2 projectileMoveDirection = (projectileVector - soundOrigin).normalized * speed;
 
-            pool.Get()
-                .Spawn(soundOrigin,
+            pool.Get().Spawn(soundOrigin,
                        projectileMoveDirection,
                        fadeTime,
                        linearDrag,

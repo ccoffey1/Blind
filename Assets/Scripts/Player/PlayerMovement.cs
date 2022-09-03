@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     // Components
     Rigidbody2D rb;
-    PlayerFootsteps footsteps;
+    Footsteps footsteps;
     Player playerData;
 
     // Player
@@ -24,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
-        footsteps = gameObject.GetComponent<PlayerFootsteps>();
+        footsteps = gameObject.GetComponent<Footsteps>();
         playerData = gameObject.GetComponent<Player>();
     }
 
@@ -39,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (inputHorizontal != 0f || inputVertical != 0f)
         {
-            PlayerIsWalking = true;
+            footsteps.Active = true;
             if (inputHorizontal != 0 && inputVertical != 0)
             {
                 inputHorizontal *= speedLimiter;
@@ -54,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            footsteps.playerWalking = false;
+            footsteps.Active = false;
             rb.velocity = Vector2.zero;
         }
     }

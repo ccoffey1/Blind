@@ -38,6 +38,6 @@ public class PeriodicSound : MonoBehaviour
         audioSource.transform.position = newSource;
         audioSource.pitch = Random.Range(1f, 1.2f);
         audioSource.PlayOneShot(sound, 0.1f);
-        SoundManager.Instance.SpawnSound(newSource, 15, 2f, 0.5f, 4f);
+        SoundManager.Instance.SpawnSound(newSource, 15, 2f, 3f, 4f);
     }
 }

@@ -80,7 +80,7 @@ public class Shambler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out SoundBullet soundBullet))
+        if (collision.gameObject.TryGetComponent(out SoundBullet soundBullet) && soundBullet.SpawnedBy.CompareTag("Player"))
         {
             OnCollisionWithSoundBullet(soundBullet);
         }

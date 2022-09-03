@@ -6,12 +6,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField]
-    private AudioClip levelAmbience;
-
-    [SerializeField]
-    private AudioClip playerDeathSound;
-
     private Player playerData;
 
     private void Awake()

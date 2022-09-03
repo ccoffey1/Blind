@@ -47,11 +47,11 @@ public class SoundManager : MonoBehaviour
             Vector2 projectileMoveDirection = (projectileVector - soundOrigin).normalized * speed;
 
             pool.Get().Spawn(soundOrigin,
-                       projectileMoveDirection,
-                       fadeTime,
-                       linearDrag,
-                       color,
-                       spawnedBy);
+                             projectileMoveDirection,
+                             fadeTime,
+                             linearDrag,
+                             color,
+                             spawnedBy);
 
             angle += angleStep;
         }
@@ -64,15 +64,7 @@ public class SoundManager : MonoBehaviour
 
     private void OnReturnSoundBulletToPool(SoundBullet bullet)
     {
-        bullet.GetComponent<TrailRenderer>().Clear();
+        bullet.ClearTrails();
         bullet.gameObject.SetActive(false);
     }
-}
-
-public class SoundProjectile
-{
-    public float fadeSpeed;
-    public GameObject soundObject;
-    public Color initialRendererColor;
-    public Color initialTrailColor;
 }

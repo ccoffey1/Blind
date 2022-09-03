@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -12,7 +10,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Harmful")
+        if (collision.gameObject.tag == "Harmful NPC")
         {
             PlayerDied();
             GameManager.Instance.EndGame();

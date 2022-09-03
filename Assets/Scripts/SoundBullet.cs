@@ -10,12 +10,14 @@ public class SoundBullet : MonoBehaviour
     public float SpawnTime { get; private set; }
     public ObjectPool<SoundBullet> Pool { get; set; }
 
-    private TrailRenderer trailRenderer;
+    private TrailRenderer primaryTrail;
+    private TrailRenderer secondaryTrail;
     private Rigidbody2D rb;
 
     private void Awake()
     {
-        trailRenderer = GetComponent<TrailRenderer>();
+        primaryTrail = transform.Find("Primary Trail").GetComponent<TrailRenderer>();
+        secondaryTrail = transform.Find("Secondary Trail").GetComponent<TrailRenderer>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -23,10 +25,12 @@ public class SoundBullet : MonoBehaviour
     {
         // TODO: could we just turn off collision for sound, and use trail duration instead, rather than deactivating?
         // This would allow for making the bullets 'shut off' after X seconds without trail abruptly vanishing?
-        while (trailRenderer.material.color.a > 0.1f)
+        while (primaryTrail.material.color.a > 0.1f)
         {
-            Color trailColor = Color.Lerp(trailRenderer.material.color, Color.clear, fadeSpeed * Time.deltaTime);
-            trailRenderer.material.color = trailColor;
+            Color primaryTrailColor = Color.Lerp(primaryTrail.material.color, Color.clear, fadeSpeed * Time.deltaTime);
+            primaryTrail.material.color = primaryTrailColor;
+            Color secondaryTrailColor = Color.Lerp(secondaryTrail.material.color, Color.clear, fadeSpeed * Time.deltaTime);
+            secondaryTrail.material.color = secondaryTrailColor;
             yield return null;
         }
 
@@ -38,18 +42,43 @@ public class SoundBullet : MonoBehaviour
         Vector2 projectileMoveDirection,
         float fadeSpeed,
         float linearDrag = 2.0f,
-        Color? color = null,
+        Color? primaryTrailColor = null,
         GameObject spawnedBy = null)
     {
         gameObject.transform.position = spawnAt;
         SpawnOrigin = spawnAt;
         SpawnedBy = spawnedBy;
         SpawnTime = Time.timeSinceLevelLoad;
-        trailRenderer.material.color = color ?? Color.white;
+        primaryTrail.material.color = primaryTrailColor ?? Color.white;
+        secondaryTrail.material.color = Color.red;
 
         rb.velocity = new Vector2(projectileMoveDirection.x, projectileMoveDirection.y);
         rb.drag = linearDrag;
 
         StartCoroutine(FadeOut(fadeSpeed));
+    }
+
+    public void ClearTrails()
+    {
+        primaryTrail.Clear();
+        secondaryTrail.Clear();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Harmful Terrain"))
+        {
+            primaryTrail.emitting = false;
+            secondaryTrail.emitting = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Harmful Terrain"))
+        {
+            primaryTrail.emitting = true;
+            secondaryTrail.emitting = false;
+        }
     }
 }

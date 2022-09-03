@@ -62,7 +62,6 @@ public class Shambler : MonoBehaviour
         while (audioSource.volume > 0)
         {
             audioSource.volume -= startVolume * Time.deltaTime / 0.05f;
-
             yield return null;
         }
 
@@ -80,7 +79,8 @@ public class Shambler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out SoundBullet soundBullet) && soundBullet.SpawnedBy.CompareTag("Player"))
+        if (collision.gameObject.TryGetComponent(out SoundBullet soundBullet) && 
+            (soundBullet.SpawnedBy?.CompareTag("Player") ?? false))
         {
             OnCollisionWithSoundBullet(soundBullet);
         }

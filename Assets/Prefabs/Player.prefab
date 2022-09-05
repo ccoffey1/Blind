@@ -71,7 +71,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3f2d0ef447bf647bbb6b9c98496c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tipToeSpeed: 0.5
   walkSpeed: 1
+  sprintSpeed: 3
   PlayerIsWalking: 0
 --- !u!114 &8897686214010714483
 MonoBehaviour:
@@ -85,11 +87,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dee2ec0dbd77de48ae4367336e97352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FootstepType: 1
   footstepPrefab: {fileID: 8212465308225043669, guid: 58f79fb44ea45884e82b516056c14686, type: 3}
-  footstepDistance: 0.6
+  tipToeFootstepDistance: 0.3
+  walkFootstepDistance: 0.6
+  sprintFootstepDistance: 1.2
+  tipToeBulletCount: 25
+  walkBulletCount: 50
+  sprintBulletCount: 70
+  tipToeBulletSpeed: 2
+  walkBulletSpeed: 3
+  sprintBulletSpeed: 6
+  tipToeBulletFadeFactor: 3
+  walkBulletFadeFactor: 2
+  sprintBulletFadeFactor: 1
   footSpacing: 0.1
   fadeSpeed: 1
-  soundBulletSpeed: 5
+  tipToeFootstepVolume: 0.2
+  walkFootstepVolume: 1
+  sprintFootstepVolume: 1
   defaultFootstepClips:
   - {fileID: 8300000, guid: c1b3b9a301da5924e885c09bcd9b2496, type: 3}
   - {fileID: 8300000, guid: a9b3f06df06e822448619cc58145a948, type: 3}

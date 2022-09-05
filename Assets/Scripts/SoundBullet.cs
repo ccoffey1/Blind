@@ -50,7 +50,7 @@ public class SoundBullet : MonoBehaviour
         SpawnedBy = spawnedBy;
         SpawnTime = Time.timeSinceLevelLoad;
         primaryTrail.material.color = primaryTrailColor ?? Color.white;
-        secondaryTrail.material.color = Color.red;
+        secondaryTrail.material.color = Color.red; // Default to red for dangerous junk
 
         rb.velocity = new Vector2(projectileMoveDirection.x, projectileMoveDirection.y);
         rb.drag = linearDrag;

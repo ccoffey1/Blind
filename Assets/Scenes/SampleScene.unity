@@ -2949,10 +2949,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8897686214010714380, guid: 552f971d5c0f2d649879ce12e77c9522, type: 3}
-      propertyPath: tipToeSpeed
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 8897686214010714381, guid: 552f971d5c0f2d649879ce12e77c9522, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Harmful Terrain
   - Harmful NPC
+  - Object Of Interest
   layers:
   - Default
   - TransparentFX

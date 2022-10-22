@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerClap : MonoBehaviour
 {
+    public bool Enabled;
+
     [SerializeField]
     private int soundProjectiles = 100;
 
@@ -28,7 +30,7 @@ public class PlayerClap : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (enabled && Input.GetKeyUp(KeyCode.Space))
         {
             audioSource.PlayOneShot(clapSound);
             SoundManager.Instance.SpawnSound(transform.position, soundProjectiles, soundSpeed, fadeSpeed, linearDrag, spawnedBy: gameObject);

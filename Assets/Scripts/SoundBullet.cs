@@ -50,7 +50,7 @@ public class SoundBullet : MonoBehaviour
         SpawnedBy = spawnedBy;
         SpawnTime = Time.timeSinceLevelLoad;
         primaryTrail.material.color = primaryTrailColor ?? Color.white;
-        secondaryTrail.material.color = primaryTrailColor ?? Color.white;
+        secondaryTrail.material.color = Color.red; // Default to red for dangerous stuffs
 
         rb.velocity = new Vector2(projectileMoveDirection.x, projectileMoveDirection.y);
         rb.drag = linearDrag;
@@ -70,14 +70,6 @@ public class SoundBullet : MonoBehaviour
         {
             primaryTrail.emitting = false;
             secondaryTrail.emitting = true;
-
-            var trailColor = collision.GetComponent<ObjectOfInterest>().ObjectData.TrailColor;
-
-            // preserve initial alpha to avoid 'relighting' the trail
-            secondaryTrail.material.color = new Color(trailColor.r, trailColor.g, trailColor.b, secondaryTrail.material.color.a);
-
-            // TODO: maybe a bad idea if more than one bullet hits?
-            // objectOfInterest.TryPlaySoundBulletCollisionSound(); 
         }
     }
 

@@ -7,6 +7,7 @@ public class Footsteps : MonoBehaviour
     public FootstepType FootstepType = FootstepType.Walking;
 
     public AudioClip[] TerrainFootstepClips { get; set; }
+    public bool Active;
 
     [SerializeField]
     private Footstep footstepPrefab;
@@ -64,8 +65,6 @@ public class Footsteps : MonoBehaviour
 
     [SerializeField]
     private AudioClip[] defaultFootstepClips;
-
-    public bool Active { get; set; }
 
     private Vector3 positionDuringLastFootprint;
     private FootType lastFoot;

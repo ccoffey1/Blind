@@ -70,3 +70,6 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Using copyrighted music for prototyping; don't want to actually include it!
+Assets/Sounds/Music/Copyrighted (To replace)/* 

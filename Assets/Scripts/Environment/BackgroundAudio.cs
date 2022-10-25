@@ -5,6 +5,9 @@ using UnityEngine;
 public class BackgroundAudio : MonoBehaviour
 {
     [SerializeField]
+    private bool paused;
+
+    [SerializeField]
     private AudioClip backgroundMusic;
 
     [SerializeField]
@@ -22,7 +25,24 @@ public class BackgroundAudio : MonoBehaviour
         backgroundAmbienceAudioSource.loop = true;
 
         backgroundMusicAudioSource.Play();
-        backgroundAmbienceAudioSource.Play();
+
+        ChangeBackgroundMusic(backgroundMusic);
+        ChangeBackgroundAmbience(backgroundAmbience);
+    }
+
+    private void Update()
+    {
+        if (paused && backgroundMusicAudioSource.isPlaying && backgroundAmbienceAudioSource.isPlaying)
+        {
+            backgroundMusicAudioSource.Pause();
+            backgroundAmbienceAudioSource.Pause();
+        }
+
+        if (!paused && !backgroundMusicAudioSource.isPlaying && !backgroundAmbienceAudioSource.isPlaying)
+        {
+            backgroundMusicAudioSource.Play();
+            backgroundAmbienceAudioSource.Play();
+        }
     }
 
     public void ChangeBackgroundMusic(AudioClip newMusic)

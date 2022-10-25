@@ -7,13 +7,20 @@ public class LockedDoor : MonoBehaviour
     [SerializeField]
     private AudioClip lockedSound;
 
+    private AudioSource audioSource;
     private bool soundCooldown;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = lockedSound;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && !soundCooldown)
         {
-            AudioSource.PlayClipAtPoint(lockedSound, transform.position, 1f);
+            audioSource.Play();
             StartCoroutine(BeginSoundCoolDown());
         }
     }

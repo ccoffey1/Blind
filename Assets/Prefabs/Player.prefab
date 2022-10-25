@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8897686214010714481}
   - component: {fileID: 8897686214010714480}
   - component: {fileID: 1292051013}
+  - component: {fileID: 9048248313303381239}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -265,3 +266,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDeathSound: {fileID: 8300000, guid: c3a0f8afd69b2744dbcd75858cadfca1, type: 3}
   soundProjectilesOnDeath: 100
+--- !u!81 &9048248313303381239
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8897686214010714376}
+  m_Enabled: 1

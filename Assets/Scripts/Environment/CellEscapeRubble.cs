@@ -20,6 +20,7 @@ public class CellEscapeRubble : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = rubbleAudio;
+        audioSource.loop = false;
     }
 
     // Update is called once per frame
@@ -50,6 +51,7 @@ public class CellEscapeRubble : MonoBehaviour
     private IEnumerator SelfDestruct()
     {
         selfDestructing = true;
+        audioSource.volume = 1f;
         audioSource.clip = destructionAudio;
         audioSource.time = 0;
         audioSource.Play();
@@ -102,6 +104,13 @@ public class CellEscapeRubble : MonoBehaviour
         float start = audioSource.volume;
         while (currentTime < duration)
         {
+            // If we were fading out while self destructing, just abort
+            if (selfDestructing)
+            {
+                audioSource.volume = 1f;
+                yield break;
+            }
+
             currentTime += Time.deltaTime;
             audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
             yield return null;

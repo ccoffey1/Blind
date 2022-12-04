@@ -18,7 +18,6 @@ public class SayTrigger : MonoBehaviour
         Gizmos.DrawCube(transform.position, new Vector3(0.5f, 0.5f, 0.5f));
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (sayOnce && said)

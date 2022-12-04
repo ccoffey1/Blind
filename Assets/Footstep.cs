@@ -16,10 +16,10 @@ public class Footstep : MonoBehaviour
     }
 
     public Vector2 Spawn(Transform sourceTransform,
-                      FootType footType,
-                      float fadeSpeed,
-                      float offset,
-                      Color? color = null)
+                         FootType footType,
+                         float fadeSpeed,
+                         float offset,
+                         Color? color = null)
     {
         spriteRenderer.material.color = color ?? Color.white;
         spriteRenderer.flipY = footType == FootType.LEFT;

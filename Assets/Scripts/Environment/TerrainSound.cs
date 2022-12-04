@@ -11,6 +11,13 @@ public class TerrainSound : MonoBehaviour
 
     private Footsteps playerFootsteps;
 
+    void OnDrawGizmos()
+    {
+        // Draw a semitransparent red cube at the transforms position
+        Gizmos.color = new Color(0, 1f, 0, 0.5f);
+        Gizmos.DrawCube(transform.position, new Vector3(0.5f, 0.5f, 0.5f));
+    }
+
     private void Awake()
     {
         playerFootsteps = GameObject.FindGameObjectWithTag("Player").GetComponent<Footsteps>();

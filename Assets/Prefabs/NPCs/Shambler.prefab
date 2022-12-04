@@ -47,10 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ed98c6477c95a43a7766373581d2df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Status: 0
   moveSpeed: 1
   soundEmitOnWalkPeriod: 0.15
   IsWalking: 0
-  shamblerMoanAudio: {fileID: 0}
+  shamblerMoanAudio: {fileID: 8300000, guid: 659e97216f2b76f46b52e9fb877443c7, type: 3}
+  dangerMusic: {fileID: 8300000, guid: ec622034fea642a4d9c83d456ba2d322, type: 3}
 --- !u!58 &8132224066484472911
 CircleCollider2D:
   m_ObjectHideFlags: 0

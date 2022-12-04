@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BackgroundAudio : MonoBehaviour
 {
+    public static BackgroundAudio Instance;
+
     [SerializeField]
     private bool paused;
 
@@ -15,6 +17,11 @@ public class BackgroundAudio : MonoBehaviour
 
     private AudioSource backgroundMusicAudioSource;
     private AudioSource backgroundAmbienceAudioSource;
+
+    private void Start()
+    {
+        Instance = this;
+    }
 
     private void Awake()
     {
@@ -61,5 +68,10 @@ public class BackgroundAudio : MonoBehaviour
         backgroundAmbienceAudioSource.clip = backgroundAmbience;
         backgroundAmbienceAudioSource.time = 0;
         backgroundAmbienceAudioSource.Play();
+    }
+
+    public string GetCurrentPlayingBackgroundMusic()
+    {
+        return backgroundMusicAudioSource.clip.name;
     }
 }

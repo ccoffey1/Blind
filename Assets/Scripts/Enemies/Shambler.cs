@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class Shambler : MonoBehaviour
 {
+
+    public NpcStatus Status;
+
     [SerializeField]
     private float moveSpeed = 1.0f;
 
@@ -15,6 +18,9 @@ public class Shambler : MonoBehaviour
     [SerializeField]
     private AudioClip shamblerMoanAudio;
 
+    [SerializeField]
+    private AudioClip dangerMusic;
+
     private Vector2? chaseTargetLocation;
     private float lastReceivedBulletAtTime = 0f;
     private Rigidbody2D rb;
@@ -26,6 +32,14 @@ public class Shambler : MonoBehaviour
         InvokeRepeating(nameof(GenerateNoise), soundEmitOnWalkPeriod, soundEmitOnWalkPeriod);
         audioSource = GetComponent<AudioSource>();
         audioSource.loop = true;
+    }
+
+    private void Update()
+    {
+        if (Status == NpcStatus.ALERTED && BackgroundAudio.Instance.GetCurrentPlayingBackgroundMusic() != dangerMusic.name)
+        {
+            BackgroundAudio.Instance.ChangeBackgroundMusic(dangerMusic);
+        }
     }
 
     private void FixedUpdate()
@@ -94,4 +108,11 @@ public class Shambler : MonoBehaviour
             chaseTargetLocation = soundBullet.SpawnOrigin;
         }
     }
+}
+
+public enum NpcStatus
+{
+    IDLE,
+    ALERTED,
+    CHASING
 }

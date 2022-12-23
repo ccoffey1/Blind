@@ -32,15 +32,19 @@ public class SoundManager : MonoBehaviour
         float fadeTime, 
         float linearDrag = 2.0f,
         Color? color = null,
-        GameObject spawnedBy = null)
+        GameObject spawnedBy = null,
+        float angleRandomizationFactor = 0f,
+        float angleStepRandomizationFactor = 0f)
     {
-        float angle = 0f;
+        float angle = Random.Range(-angleRandomizationFactor, angleRandomizationFactor);
         float angleStep = 360f / numberOfProjectiles;
         for (int i = 0; i <= numberOfProjectiles - 1; i++)
         {
+            float randomizedAngle = angle + Random.Range(-angleStepRandomizationFactor, angleStepRandomizationFactor);
+
             // Direction calculations.
-            float projectileDirXPosition = soundOrigin.x + Mathf.Sin((angle * Mathf.PI) / 180) * Radius;
-            float projectileDirYPosition = soundOrigin.y + Mathf.Cos((angle * Mathf.PI) / 180) * Radius;
+            float projectileDirXPosition = soundOrigin.x + Mathf.Sin((randomizedAngle * Mathf.PI) / 180) * Radius;
+            float projectileDirYPosition = soundOrigin.y + Mathf.Cos((randomizedAngle * Mathf.PI) / 180) * Radius;
 
             // Create vectors.
             Vector2 projectileVector = new(projectileDirXPosition, projectileDirYPosition);

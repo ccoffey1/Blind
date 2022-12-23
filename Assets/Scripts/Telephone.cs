@@ -1,60 +1,75 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Telephone : MonoBehaviour
 {
-    [SerializeField]
-    private bool isRinging = false;
-    private AudioSource ringingSound;
+    public bool isRinging;
+    [SerializeField] AudioClip ringingSound;
+    [SerializeField] AudioClip pickupSound;
+    [SerializeField] AudioClip dialogSound;
+    [SerializeField] AudioClip hangupSound;
+
+    private AudioSource audioSource;
 
     void Start()
     {
-        ringingSound = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
         if (isRinging)
         {
-            if (!ringingSound.isPlaying)
+            if (!audioSource.isPlaying)
             {
-                ringingSound.Play();
+                audioSource.clip = ringingSound;
+                audioSource.Play();
                 StartCoroutine(SpawnSound(15));
+            }
+        }
+        else 
+        {
+            if (!audioSource.isPlaying) 
+            {
+                if (audioSource.clip == pickupSound)
+                {
+                    audioSource.clip = dialogSound;
+                    audioSource.Play();
+                }
+                else if (audioSource.clip == dialogSound)
+                {
+                    audioSource.clip = hangupSound;
+                    audioSource.Play();
+                }
             }
         }
     }
 
-    public void Answer()
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        isRinging = false;
-        ringingSound.Stop();
-    }
-
-    public void MakeRing()
-    {
-        isRinging = true;
-    }
-
-    public void StopRing()
-    {
-        isRinging = false;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawCube(transform.position, new Vector3(1, 1, 1));
+        if (isRinging && collision.gameObject.tag == "Player")
+        {
+            isRinging = false;
+            audioSource.Stop();
+            audioSource.clip = pickupSound;
+            audioSource.Play();
+        }
     }
 
     private IEnumerator SpawnSound(int count) 
     {
+        
         for (int i = 0; i < count; i++)
         {
+            if (!isRinging) 
+            {
+                yield break;
+            }
             int soundCount = Random.Range(10, 20);
             Vector2 spawnLocation = new(transform.position.x, transform.position.y);
             SoundManager.Instance.SpawnSound(spawnLocation, soundCount, 3f, 2f, linearDrag: 1f, angleRandomizationFactor: 90f, angleStepRandomizationFactor: 90f);
             yield return new WaitForSeconds(0.12f);
         }
+        
     }
 }

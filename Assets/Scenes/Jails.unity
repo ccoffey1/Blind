@@ -596,7 +596,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.4510185, y: 1}
+    m_SensorSize: {x: 1.0180258, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -4829,6 +4829,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8897686214010714376, guid: 552f971d5c0f2d649879ce12e77c9522, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8897686214010714381, guid: 552f971d5c0f2d649879ce12e77c9522, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4873,9 +4877,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8897686214010714483, guid: 552f971d5c0f2d649879ce12e77c9522, type: 3}
-      propertyPath: fadeSpeed
-      value: 0.5
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3345265656621812721, guid: 552f971d5c0f2d649879ce12e77c9522, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 552f971d5c0f2d649879ce12e77c9522, type: 3}

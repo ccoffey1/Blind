@@ -16,12 +16,6 @@ public class ElectricityTrap : ObjectOfInterest
         audioSource.loop = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Player")) {
             var player = other.gameObject.GetComponent<Player>();

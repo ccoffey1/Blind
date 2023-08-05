@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Harmful NPC
   - Object Of Interest
+  - Background Audio
   layers:
   - Default
   - TransparentFX

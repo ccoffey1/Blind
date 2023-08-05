@@ -10,9 +10,12 @@ public class GameManager : MonoBehaviour
     private float volumeFadeDuration = 5f;
     private float volumeRestoreDuration = 1f;
 
-    private void Start()
+    private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start() {
         audioManager = AudioManager.Instance;
         StartCoroutine(FadeVolume(1.0f, volumeRestoreDuration));
     }

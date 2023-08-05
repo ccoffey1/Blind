@@ -6,7 +6,6 @@ public class PlayerMovement : MonoBehaviour
     // Components
     Rigidbody2D rb;
     Footsteps footsteps;
-    Player playerData;
 
     // Player
     [SerializeField]
@@ -31,7 +30,6 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         footsteps = gameObject.GetComponent<Footsteps>();
-        playerData = gameObject.GetComponent<Player>();
     }
 
     // Update is called once per frame

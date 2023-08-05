@@ -8,20 +8,25 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int soundProjectilesOnDeath = 100;
 
+    public void KillInstantly() {
+        GetComponent<Rigidbody2D>().simulated = false;
+        GameManager.Instance.EndGame();
+    }
+
+    public void KillViolent() {
+        // TODO: Might not want to handle this here?
+        GetComponent<Rigidbody2D>().simulated = false;
+        AudioSource.PlayClipAtPoint(playerDeathSound, transform.position);
+        Invoke(nameof(SpawnPlayerScreamAudioBullets), 0.9f);
+        GameManager.Instance.EndGame();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Harmful NPC")
         {
-            PlayerDied();
-            GameManager.Instance.EndGame();
+            KillViolent();
         }
-    }
-
-    private void PlayerDied()
-    {
-        GetComponent<Rigidbody2D>().simulated = false;
-        AudioSource.PlayClipAtPoint(playerDeathSound, transform.position);
-        Invoke(nameof(SpawnPlayerScreamAudioBullets), 0.9f);
     }
 
     private void SpawnPlayerScreamAudioBullets()

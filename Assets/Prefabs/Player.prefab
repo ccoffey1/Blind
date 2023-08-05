@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1919592013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1919592014}
+  - component: {fileID: 1919592016}
+  - component: {fileID: 1919592015}
+  m_Layer: 6
+  m_Name: Ears
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1919592014
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919592013}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8897686214010714381}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1818360609 &1919592016
+RotationConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919592013}
+  m_Enabled: 1
+  m_Weight: 1
+  m_RotationAtRest: {x: 0, y: 0, z: 0}
+  m_RotationOffset: {x: 0, y: 0, z: 0}
+  m_AffectRotationX: 1
+  m_AffectRotationY: 1
+  m_AffectRotationZ: 1
+  m_IsContraintActive: 1
+  m_IsLocked: 1
+  m_Sources:
+  - sourceTransform: {fileID: 0}
+    weight: 1
+--- !u!81 &1919592015
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919592013}
+  m_Enabled: 1
 --- !u!1 &8897686214010714376
 GameObject:
   m_ObjectHideFlags: 0
@@ -16,7 +76,6 @@ GameObject:
   - component: {fileID: 8897686214010714481}
   - component: {fileID: 8897686214010714480}
   - component: {fileID: 1292051013}
-  - component: {fileID: 9048248313303381239}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -35,7 +94,8 @@ Transform:
   m_LocalPosition: {x: -0.038888887, y: 0.022222223, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1919592014}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -89,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FootstepType: 1
+  Active: 0
   footstepPrefab: {fileID: 8212465308225043669, guid: 58f79fb44ea45884e82b516056c14686, type: 3}
   tipToeFootstepDistance: 0.3
   walkFootstepDistance: 0.6
@@ -103,7 +164,7 @@ MonoBehaviour:
   walkBulletFadeFactor: 2
   sprintBulletFadeFactor: 1
   footSpacing: 0.1
-  fadeSpeed: 1
+  fadeSpeed: 0.5
   tipToeFootstepVolume: 0.2
   walkFootstepVolume: 1
   sprintFootstepVolume: 1
@@ -266,11 +327,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDeathSound: {fileID: 8300000, guid: c3a0f8afd69b2744dbcd75858cadfca1, type: 3}
   soundProjectilesOnDeath: 100
---- !u!81 &9048248313303381239
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8897686214010714376}
-  m_Enabled: 1

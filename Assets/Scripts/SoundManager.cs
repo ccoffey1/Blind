@@ -8,6 +8,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private SoundBullet soundPrefab;
 
+    [SerializeField]
+    private int initialPoolSize;
+
     private ObjectPool<SoundBullet> pool;
 
     private const float Radius = 1f;
@@ -16,6 +19,10 @@ public class SoundManager : MonoBehaviour
     {
         Instance = this;
         pool = new ObjectPool<SoundBullet>(CreateSound, OnGetSoundBulletFromPool, OnReturnSoundBulletToPool);
+        for (int i = 0; i < initialPoolSize; i++) {
+            SoundBullet soundBullet = CreateSound();
+            soundBullet.gameObject.SetActive(false);
+        }
     }
 
     private SoundBullet CreateSound()

@@ -68,6 +68,7 @@ public class SoundBullet : MonoBehaviour
     {
         if (collision.CompareTag("Object Of Interest"))
         {
+            secondaryTrail.material.color = collision.GetComponent<ObjectOfInterest>().SoundBulletTrailColor;
             primaryTrail.emitting = false;
             secondaryTrail.emitting = true;
         }

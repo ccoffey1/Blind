@@ -9,12 +9,7 @@ public class Switch : ObjectOfInterest
     [SerializeField] private AudioClip deactivationClip;
     [SerializeField] private bool disableOnActivation;
     [SerializeField] private bool active = true;
-
-    private bool on;
-
-    void Start() {
-        on = active;
-    }
+    [SerializeField] private bool on;
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (active) {
@@ -31,7 +26,7 @@ public class Switch : ObjectOfInterest
                 }
                 if (disableOnActivation) {
                     active = false;
-                    SoundBulletTrailColor = Color.gray;
+                    SoundBulletPassoverColor = Color.gray;
                 }
             }
         }

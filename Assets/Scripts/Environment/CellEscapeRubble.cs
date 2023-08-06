@@ -18,7 +18,7 @@ public class CellEscapeRubble : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponentInChildren<AudioSource>();
         audioSource.clip = rubbleAudio;
         audioSource.loop = false;
     }

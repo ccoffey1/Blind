@@ -46,9 +46,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a786e555e2850ac4480f2ed12d9ea80d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SoundBulletPassoverColor: {r: 1, g: 0, b: 0, a: 1}
+  projectSoundBullets: 1
+  soundBulletPulseDelay: 0.09
+  additionalConfig:
+    numberOfProjectiles: 10
+    speed: 3
+    fadeTime: 4
+    linearDrag: 2
+    color: {r: 1, g: 0, b: 0, a: 1}
+    positionRandomizationAmount: 0.22
   activatedSound: {fileID: 8300000, guid: d6b901479bcb8fb4a94c87b830bab353, type: 3}
   active: 1
-  data: {fileID: 11400000, guid: 9a03753f5fbdd89458ac3569470c8310, type: 2}
 --- !u!82 &6483057249503324715
 AudioSource:
   m_ObjectHideFlags: 0
@@ -61,7 +70,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9ca92063dd1fdb142813f3a39c6b894c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.34
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -70,9 +79,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 2
+  MaxDistance: 5.005789
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -80,23 +89,23 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.5
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -2.0008
+      outSlope: -2.0008
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      time: 0.9873657
+      value: 0.0040740967
+      inSlope: -0.5002
+      outSlope: -0.5002
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -155,6 +164,25 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -170,8 +198,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.08243179, y: 0.60844684}
+    - - {x: -0.6194544, y: 0.7226412}
       - {x: -0.63163096, y: -0.15466449}
-      - {x: -0.5671763, y: -0.35563982}
-      - {x: 0.47444117, y: -0.33503175}
-      - {x: 0.4873743, y: 0.43266577}
+      - {x: -0.6306042, y: -0.44868624}
+      - {x: 0.47444117, y: -0.43653226}
+      - {x: 0.45777035, y: 0.7329108}
+  m_UseDelaunayMesh: 0

@@ -7,13 +7,18 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    private List<AudioSource> audioSources;
+    [SerializeField] private float lowPassCutoffFrequency = 500f;
+    private IEnumerable<AudioSource> audioSources;
     private GameObject player;
 
     void Awake()
     {
         Instance = this;
-        audioSources = FindObjectsOfType<AudioSource>().Where(x => !x.CompareTag("Background Audio")).ToList();
+    }
+
+    void Start() 
+    {
+        audioSources = FindObjectsOfType<AudioSource>(includeInactive: true).Where(x => !x.CompareTag("Background Audio"));
         player = GameObject.FindWithTag("Player");
         foreach (AudioSource audioSource in audioSources)
         {
@@ -22,7 +27,7 @@ public class AudioManager : MonoBehaviour
             {
                 audioLowPassFilter = audioSource.gameObject.AddComponent<AudioLowPassFilter>();
             }
-            audioLowPassFilter.cutoffFrequency = 700f;
+            audioLowPassFilter.cutoffFrequency = lowPassCutoffFrequency;
             audioLowPassFilter.enabled = false;
         }
     }

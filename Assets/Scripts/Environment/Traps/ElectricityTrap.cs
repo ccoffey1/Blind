@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElectricityTrap : ObjectOfInterest 
+public class ElectricityTrap : Trap 
 {
     [SerializeField] private AudioClip activatedSound;
     [SerializeField] private bool active;
@@ -21,7 +21,7 @@ public class ElectricityTrap : ObjectOfInterest
             var player = other.gameObject.GetComponent<Player>();
             AudioSource.PlayClipAtPoint(activatedSound, player.transform.position);
             player.KillInstantly();
-            SoundManager.Instance.SpawnSound(player.transform.position, 50, 4f, 1.0f, 0f, Color.red);
+            SoundManager.Instance.SpawnSound(player.transform.position, 50, 4f, 1.0f, 0f, color: Color.red);
             CameraShake.Instance.ShakeCamera(3f, 0.5f);
         }
     }

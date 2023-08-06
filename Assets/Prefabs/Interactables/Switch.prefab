@@ -43,6 +43,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -71,8 +90,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c2697e98101d849a60f4e8a714384c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SoundBulletTrailColor: {r: 1, g: 0.9160461, b: 0, a: 1}
+  SoundBulletPassoverColor: {r: 1, g: 0.8390839, b: 0, a: 1}
   objectsToControl:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   activationClip: {fileID: 8300000, guid: b1271ab4995477643864432d68fdf7c5, type: 3}

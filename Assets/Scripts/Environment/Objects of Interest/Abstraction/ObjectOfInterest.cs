@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class ObjectOfInterest : MonoBehaviour
 {
-    public Color SoundBulletTrailColor;
+    public Color SoundBulletPassoverColor;
 }

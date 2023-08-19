@@ -16,6 +16,13 @@ public class SoundManager : MonoBehaviour
 
     private const float Radius = 1f;
 
+    private ParticleSystem particleSystem;
+
+    private void Start()
+    {
+        particleSystem = GetComponentInChildren<ParticleSystem>();
+    }
+
     private void Awake()
     {
         Instance = this;
@@ -40,13 +47,13 @@ public class SoundManager : MonoBehaviour
         GameObject spawnedBy = null)
     {
         SpawnSound(
-            soundOrigin, 
-            config.numberOfProjectiles, 
-            config.speed, 
-            config.fadeTime, 
-            config.linearDrag, 
+            soundOrigin,
+            config.numberOfProjectiles,
+            config.speed,
+            config.fadeTime,
+            config.linearDrag,
             config.positionRandomizationAmount,
-            config.color, 
+            config.color,
             spawnedBy
         );
     }
@@ -61,33 +68,35 @@ public class SoundManager : MonoBehaviour
         Color? color = null,
         GameObject spawnedBy = null)
     {
-        float angle = 0f;
-        float angleStep = 360f / numberOfProjectiles;
+        particleSystem.Play();
 
-        // Randomization to the location.
-        float randomizedX = soundOrigin.x + UnityEngine.Random.Range(-positionRandomizationAmount, positionRandomizationAmount);
-        float randomizedY = soundOrigin.y + UnityEngine.Random.Range(-positionRandomizationAmount, positionRandomizationAmount);
-        Vector2 newOrigin = new Vector2(randomizedX, randomizedY);
+        // float angle = 0f;
+        // float angleStep = 360f / numberOfProjectiles;
 
-        for (int i = 0; i <= numberOfProjectiles - 1; i++)
-        {
-            // Direction calculations.
-            float projectileDirXPosition = newOrigin.x + Mathf.Sin((angle * Mathf.PI) / 180) * Radius;
-            float projectileDirYPosition = newOrigin.y + Mathf.Cos((angle * Mathf.PI) / 180) * Radius;
+        // // Randomization to the location.
+        // float randomizedX = soundOrigin.x + UnityEngine.Random.Range(-positionRandomizationAmount, positionRandomizationAmount);
+        // float randomizedY = soundOrigin.y + UnityEngine.Random.Range(-positionRandomizationAmount, positionRandomizationAmount);
+        // Vector2 newOrigin = new Vector2(randomizedX, randomizedY);
 
-            // Create vectors.
-            Vector2 projectileVector = new(projectileDirXPosition, projectileDirYPosition);
-            Vector2 projectileMoveDirection = (projectileVector - newOrigin).normalized * speed;
+        // for (int i = 0; i <= numberOfProjectiles - 1; i++)
+        // {
+        //     // Direction calculations.
+        //     float projectileDirXPosition = newOrigin.x + Mathf.Sin((angle * Mathf.PI) / 180) * Radius;
+        //     float projectileDirYPosition = newOrigin.y + Mathf.Cos((angle * Mathf.PI) / 180) * Radius;
 
-            pool.Get().Spawn(newOrigin,
-                             projectileMoveDirection,
-                             fadeTime,
-                             linearDrag,
-                             color,
-                             spawnedBy);
+        //     // Create vectors.
+        //     Vector2 projectileVector = new(projectileDirXPosition, projectileDirYPosition);
+        //     Vector2 projectileMoveDirection = (projectileVector - newOrigin).normalized * speed;
 
-            angle += angleStep;
-        }
+        //     pool.Get().Spawn(newOrigin,
+        //                      projectileMoveDirection,
+        //                      fadeTime,
+        //                      linearDrag,
+        //                      color,
+        //                      spawnedBy);
+
+        //     angle += angleStep;
+        // }
     }
 
     private void OnGetSoundBulletFromPool(SoundBullet bullet)

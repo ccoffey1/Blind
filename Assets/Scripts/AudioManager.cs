@@ -16,7 +16,7 @@ public class AudioManager : MonoBehaviour
         Instance = this;
     }
 
-    void Start() 
+    void Start()
     {
         audioSources = FindObjectsOfType<AudioSource>(includeInactive: true).Where(x => !x.CompareTag("Background Audio"));
         player = GameObject.FindWithTag("Player");

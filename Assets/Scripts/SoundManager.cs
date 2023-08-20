@@ -68,35 +68,35 @@ public class SoundManager : MonoBehaviour
         Color? color = null,
         GameObject spawnedBy = null)
     {
-        particleSystem.Play();
+        // particleSystem.Play();
 
-        // float angle = 0f;
-        // float angleStep = 360f / numberOfProjectiles;
+        float angle = 0f;
+        float angleStep = 360f / numberOfProjectiles;
 
-        // // Randomization to the location.
-        // float randomizedX = soundOrigin.x + UnityEngine.Random.Range(-positionRandomizationAmount, positionRandomizationAmount);
-        // float randomizedY = soundOrigin.y + UnityEngine.Random.Range(-positionRandomizationAmount, positionRandomizationAmount);
-        // Vector2 newOrigin = new Vector2(randomizedX, randomizedY);
+        // Randomization to the location.
+        float randomizedX = soundOrigin.x + UnityEngine.Random.Range(-positionRandomizationAmount, positionRandomizationAmount);
+        float randomizedY = soundOrigin.y + UnityEngine.Random.Range(-positionRandomizationAmount, positionRandomizationAmount);
+        Vector2 newOrigin = new Vector2(randomizedX, randomizedY);
 
-        // for (int i = 0; i <= numberOfProjectiles - 1; i++)
-        // {
-        //     // Direction calculations.
-        //     float projectileDirXPosition = newOrigin.x + Mathf.Sin((angle * Mathf.PI) / 180) * Radius;
-        //     float projectileDirYPosition = newOrigin.y + Mathf.Cos((angle * Mathf.PI) / 180) * Radius;
+        for (int i = 0; i <= numberOfProjectiles - 1; i++)
+        {
+            // Direction calculations.
+            float projectileDirXPosition = newOrigin.x + Mathf.Sin((angle * Mathf.PI) / 180) * Radius;
+            float projectileDirYPosition = newOrigin.y + Mathf.Cos((angle * Mathf.PI) / 180) * Radius;
 
-        //     // Create vectors.
-        //     Vector2 projectileVector = new(projectileDirXPosition, projectileDirYPosition);
-        //     Vector2 projectileMoveDirection = (projectileVector - newOrigin).normalized * speed;
+            // Create vectors.
+            Vector2 projectileVector = new(projectileDirXPosition, projectileDirYPosition);
+            Vector2 projectileMoveDirection = (projectileVector - newOrigin).normalized * speed;
 
-        //     pool.Get().Spawn(newOrigin,
-        //                      projectileMoveDirection,
-        //                      fadeTime,
-        //                      linearDrag,
-        //                      color,
-        //                      spawnedBy);
+            pool.Get().Spawn(newOrigin,
+                             projectileMoveDirection,
+                             fadeTime,
+                             linearDrag,
+                             color,
+                             spawnedBy);
 
-        //     angle += angleStep;
-        // }
+            angle += angleStep;
+        }
     }
 
     private void OnGetSoundBulletFromPool(SoundBullet bullet)

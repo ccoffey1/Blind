@@ -70,11 +70,13 @@ public class Footsteps : MonoBehaviour
     private FootType lastFoot;
     private ObjectPool<Footstep> pool;
     private AudioSource audioSource;
+    private ParticleSystem particleSystem;
 
     private void Awake()
     {
         pool = new ObjectPool<Footstep>(CreateFootstep, OnGetFootstepFromPool, OnReturnFootstepToPool);
         audioSource = GetComponent<AudioSource>();
+        particleSystem = GetComponentInChildren<ParticleSystem>();
     }
 
     // Start is called before the first frame update
@@ -139,13 +141,18 @@ public class Footsteps : MonoBehaviour
         footstepIdx = (footstepIdx + 1) % footstepClips.Length;
         audioSource.volume = GetFootstepVolume();
         audioSource.PlayOneShot(footstepClips[footstepIdx], vol);
-        SoundManager.Instance.SpawnSound(
-            spawnAt, 
-            GetBulletCount(), 
-            GetBulletSpeed(), 
-            GetBulletFadeTime(),
-            GetBulletLinearDrag(),
-            spawnedBy: gameObject);
+
+        particleSystem.transform.position = spawnAt;
+        print(particleSystem.transform.position);
+        particleSystem.Play();
+
+        // SoundManager.Instance.SpawnSound(
+        //     spawnAt,
+        //     GetBulletCount(),
+        //     GetBulletSpeed(),
+        //     GetBulletFadeTime(),
+        //     GetBulletLinearDrag(),
+        //     spawnedBy: gameObject);
     }
 
     private float GetFootstepDistance()

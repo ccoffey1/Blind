@@ -21,7 +21,8 @@ public class ElectricityTrap : Trap
             var player = other.gameObject.GetComponent<Player>();
             AudioSource.PlayClipAtPoint(activatedSound, player.transform.position);
             player.KillInstantly();
-            SoundManager.Instance.SpawnSound(player.transform.position, 50, 4f, 1.0f, 0f, color: Color.red);
+            // TODO: Switch to particle system
+            // SoundManager.Instance.SpawnSound(player.transform.position, 50, 4f, 1.0f, 0f, color: Color.red);
             CameraShake.Instance.ShakeCamera(3f, 0.5f);
         }
     }

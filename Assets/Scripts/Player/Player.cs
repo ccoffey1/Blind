@@ -31,7 +31,8 @@ public class Player : MonoBehaviour
 
     private void SpawnPlayerScreamAudioBullets()
     {
-        SoundManager.Instance.SpawnSound(transform.position, soundProjectilesOnDeath, 4f, 0.3f, 0f, color: Color.red);
+        // TODO: Switch to particle system
+        // SoundManager.Instance.SpawnSound(transform.position, soundProjectilesOnDeath, 4f, 0.3f, 0f, color: Color.red);
         CameraShake.Instance.ShakeCamera(5f, 2f);
     }
 }

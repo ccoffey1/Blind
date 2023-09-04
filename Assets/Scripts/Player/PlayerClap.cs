@@ -7,33 +7,63 @@ public class PlayerClap : MonoBehaviour
     public bool Enabled;
 
     [SerializeField]
-    private int soundProjectiles = 100;
-
-    [SerializeField]
-    private float soundSpeed = 4f;
-
-    [SerializeField]
-    private float fadeSpeed = 0.5f;
-
-    [SerializeField]
-    private float linearDrag = 0f;
-
-    [SerializeField]
-    private AudioClip clapSound;
-
     private AudioSource audioSource;
 
-    private void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
+    [SerializeField]
+    private AudioClip quietClap;
+
+
+    [SerializeField]
+    private AudioClip mediumClap;
+
+    [SerializeField]
+    private AudioClip loudClap;
+
+    [SerializeField]
+    private ParticleSystem clapParticleSystem;
+
+    // Defaults
+    private const float MIN_LIFETIME = 1.0f;
+    private const float MAX_LIFETIME = 2.0f;
+
+    private const float MIN_SPEED = 4.0f;
+    private const float MAX_SPEED = 5.0f;
+
+    private float timer = 0.0f;
+    private float duration = 1.0f;
+    private float startLifeTime = MIN_LIFETIME;
+    private float startSpeed = MIN_SPEED;
 
     private void Update()
     {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            timer += Time.deltaTime;
+
+            startLifeTime = Mathf.Lerp(MIN_LIFETIME, MAX_LIFETIME, timer / duration);
+            startLifeTime = Mathf.Clamp(startLifeTime, MIN_LIFETIME, MAX_LIFETIME);
+
+            startSpeed = Mathf.Lerp(MIN_SPEED, MAX_SPEED, timer / duration);
+            startSpeed = Mathf.Clamp(startSpeed, MIN_SPEED, MAX_SPEED);
+        }
+
         if (enabled && Input.GetKeyUp(KeyCode.Space))
         {
-            audioSource.PlayOneShot(clapSound);
-            SoundManager.Instance.SpawnSound(transform.position, soundProjectiles, soundSpeed, fadeSpeed, linearDrag, spawnedBy: gameObject);
+            if (timer <= 0.5) {
+                audioSource.clip = quietClap;
+            }
+            if (timer > 0.5) {
+                audioSource.clip = mediumClap;
+            }
+            if (timer >= 0.8) {
+                audioSource.clip = loudClap;
+            }
+            audioSource.Play();
+            var main = clapParticleSystem.main;
+            main.startLifetime = startLifeTime;
+            main.startSpeed = startSpeed;
+            clapParticleSystem.Play();
+            timer = 0f;
         }
     }
 }

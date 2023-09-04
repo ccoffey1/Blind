@@ -73,25 +73,27 @@ public class Shambler : MonoBehaviour
     {
         if (IsWalking)
         {
-            SoundManager.Instance.SpawnSound(transform.position, 10, 0.5f, 1f, color: Color.red, spawnedBy: gameObject);
+            // TODO: Switch to particle system
+            // SoundManager.Instance.SpawnSound(transform.position, 10, 0.5f, 1f, color: Color.red, spawnedBy: gameObject);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out SoundBullet soundBullet) && 
-            (soundBullet.SpawnedBy?.CompareTag("Player") ?? false))
-        {
-            OnCollisionWithSoundBullet(soundBullet);
-        }
+        // TODO: Switch to particle system
+        // if (collision.gameObject.TryGetComponent(out SoundBullet soundBullet) && 
+        //     (soundBullet.SpawnedBy?.CompareTag("Player") ?? false))
+        // {
+        //     OnCollisionWithSoundBullet(soundBullet);
+        // }
     }
 
-    private void OnCollisionWithSoundBullet(SoundBullet soundBullet)
-    {
-        if (soundBullet.SpawnedBy != gameObject && soundBullet.SpawnTime > lastReceivedBulletAtTime)
-        {
-            lastReceivedBulletAtTime = soundBullet.SpawnTime;
-            chaseTargetLocation = soundBullet.SpawnOrigin;
-        }
-    }
+    // private void OnCollisionWithSoundBullet(SoundBullet soundBullet)
+    // {
+    //     if (soundBullet.SpawnedBy != gameObject && soundBullet.SpawnTime > lastReceivedBulletAtTime)
+    //     {
+    //         lastReceivedBulletAtTime = soundBullet.SpawnTime;
+    //         chaseTargetLocation = soundBullet.SpawnOrigin;
+    //     }
+    // }
 }

@@ -7,7 +7,9 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    [SerializeField] private float lowPassCutoffFrequency = 500f;
+    [SerializeField]
+    private float lowPassCutoffFrequency = 500f;
+
     private IEnumerable<AudioSource> audioSources;
     private GameObject player;
 
@@ -18,9 +20,8 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        audioSources = FindObjectsOfType<AudioSource>(includeInactive: true).Where(x => !x.CompareTag("Background Audio"));
         player = GameObject.FindWithTag("Player");
-        foreach (AudioSource audioSource in audioSources)
+        foreach (AudioSource audioSource in FindObjectsOfType<AudioSource>(includeInactive: true).Where(x => !x.CompareTag("Background Audio")))
         {
             audioSource.gameObject.TryGetComponent(out AudioLowPassFilter audioLowPassFilter);
             if (audioLowPassFilter == null)
@@ -34,9 +35,9 @@ public class AudioManager : MonoBehaviour
 
     void Update()
     {
-        // TODO: bit of a memory leak issue here -- any audiosources that were removed
+        // TODO: bit of aaudioSourcei memory leak issue here -- any audiosources that were removed
         // will be null here, but we'll still iterate over them unnecessarily
-        foreach (AudioSource audioSource in audioSources.Where(x => x != null))
+        foreach (AudioSource audioSource in FindObjectsOfType<AudioSource>(includeInactive: true).Where(x => !x.CompareTag("Background Audio")))
         {
             AudioLowPassFilter filter = audioSource.gameObject.GetComponent<AudioLowPassFilter>();
             Vector3 directionToPlayer = player.transform.position - audioSource.transform.position;

@@ -143,7 +143,6 @@ public class Footsteps : MonoBehaviour
         audioSource.PlayOneShot(footstepClips[footstepIdx], vol);
 
         particleSystem.transform.position = spawnAt;
-        print(particleSystem.transform.position);
         particleSystem.Play();
 
         // SoundManager.Instance.SpawnSound(

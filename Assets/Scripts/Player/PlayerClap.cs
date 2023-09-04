@@ -24,10 +24,10 @@ public class PlayerClap : MonoBehaviour
 
     // Defaults
     private const float MIN_LIFETIME = 1.0f;
-    private const float MAX_LIFETIME = 2.0f;
+    private const float MAX_LIFETIME = 3.0f;
 
-    private const float MIN_SPEED = 4.0f;
-    private const float MAX_SPEED = 5.0f;
+    private const float MIN_SPEED = 3.5f;
+    private const float MAX_SPEED = 7.0f;
 
     private float timer = 0.0f;
     private float duration = 1.0f;

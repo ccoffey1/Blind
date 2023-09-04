@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Burst;
 using UnityEngine;
 
 public class CellEscapeRubble : MonoBehaviour
@@ -10,6 +11,7 @@ public class CellEscapeRubble : MonoBehaviour
     private AudioClip destructionAudio;
 
     private AudioSource audioSource;
+    private ParticleSystem particleSystem;
 
     private bool playerOverlapped;
     private bool audioPausing;
@@ -18,6 +20,7 @@ public class CellEscapeRubble : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        particleSystem = GetComponentInChildren<ParticleSystem>();
         audioSource = GetComponentInChildren<AudioSource>();
         audioSource.clip = rubbleAudio;
         audioSource.loop = false;
@@ -33,17 +36,20 @@ public class CellEscapeRubble : MonoBehaviour
                 audioSource.volume = 1f;
                 audioSource.time = 0;
                 audioSource.Play();
-                StartCoroutine(SpawnSoundBullets());
-            }
+                particleSystem.Play();
+                StartCoroutine(RandomizeParticleSystemLocation());
+            } 
         }
         else if (!selfDestructing && audioSource.isPlaying && !audioPausing && audioSource.volume > 0)
         {
+            particleSystem.Stop();
             StartCoroutine(FadeOutAudio(0.5f, 0f));
         }
 
         // Audio is finished! Destroy the wall
         if (!selfDestructing && audioSource.time >= audioSource.clip.length - 0.3)
         {
+            particleSystem.Stop();
             StartCoroutine(SelfDestruct());
         }
     }
@@ -60,24 +66,42 @@ public class CellEscapeRubble : MonoBehaviour
         Destroy(GetComponent<PolygonCollider2D>());
         Destroy(GetComponent<SpriteRenderer>());
 
+        var mainModule = particleSystem.main;
+        var originalStartLifetime = mainModule.startLifetime;
+        var originalSpeed = mainModule.startSpeed;
+        mainModule.startLifetime = originalStartLifetime.constant * 5f;
+        mainModule.startSpeed = originalSpeed.constant * 2f;
+        mainModule.loop = false;
+        ParticleSystem.EmissionModule em = particleSystem.emission;
+        var burst = em.GetBurst(0);
+        burst.count = burst.count.constant * 2;
+        em.SetBurst(0, burst);
+
         CameraShake.Instance.ShakeCamera(3f, 1f);
-        SoundManager.Instance.SpawnSound(transform.position, 30, 3f, 1f, linearDrag: 0f);
+        particleSystem.Play();
 
         yield return new WaitForSeconds(0.1f);
 
+        mainModule.startLifetime = originalStartLifetime.constant * 1.2f;
+
         float delayBetweenSounds = 0.3f;
-        int soundPulseCount = 9;
+        int soundPulseCount = 7;
         for (int i = 0; i < soundPulseCount; i++)
         {
-            // TODO: Add some kinda 'small-sound' function to the sound manager to avoid this smell
             float randX = Random.Range(-0.3f, 0.3f);
             float randY = Random.Range(-0.3f, 0.3f);
             int soundCount = Random.Range(15, 30);
+            
+            burst = em.GetBurst(0);
+            burst.count = soundCount;
+            em.SetBurst(0, burst);
+        
             Vector2 spawnLocation = new(transform.position.x + randX, transform.position.y + randY);
-            SoundManager.Instance.SpawnSound(spawnLocation, soundCount, 3f, 2f, linearDrag: 1f);
-
+            particleSystem.transform.position = spawnLocation;
+            particleSystem.Play();
             yield return new WaitForSeconds(delayBetweenSounds);
         }
+        particleSystem.Stop();
 
         yield return new WaitForSeconds(destructionAudio.length - (soundPulseCount * delayBetweenSounds)); // clip size minus the delays above
 
@@ -85,14 +109,14 @@ public class CellEscapeRubble : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private IEnumerator SpawnSoundBullets()
+    private IEnumerator RandomizeParticleSystemLocation()
     {
         while (audioSource.isPlaying && !selfDestructing)
         {
             float randX = Random.Range(-0.3f, 0.3f);
             float randY = Random.Range(-0.3f, 0.3f);
             Vector2 spawnLocation = new Vector2(transform.position.x + randX, transform.position.y + randY);
-            SoundManager.Instance.SpawnSound(spawnLocation, 5, 1f, 3f);
+            particleSystem.transform.position = spawnLocation;
             yield return new WaitForSeconds(0.05f);
         }
     }

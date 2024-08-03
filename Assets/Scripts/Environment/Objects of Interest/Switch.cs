@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Switch : ObjectOfInterest
+public class Switch : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> objectsToControl;
+    [SerializeField] private List<Activatable> activatablesToToggle;
+    [SerializeField] private List<GameObject> gameObjectsToToggle;
     [SerializeField] private AudioClip activationClip; 
     [SerializeField] private AudioClip deactivationClip;
     [SerializeField] private bool disableOnActivation;
@@ -21,12 +22,14 @@ public class Switch : ObjectOfInterest
                     on = true;
                     AudioSource.PlayClipAtPoint(activationClip, transform.position);
                 }
-                foreach (GameObject gameObject in objectsToControl) {
+                foreach (GameObject gameObject in gameObjectsToToggle) {
                     gameObject.SetActive(!gameObject.activeInHierarchy);
+                }
+                foreach (Activatable activatable in activatablesToToggle) {
+                    activatable.Toggle();
                 }
                 if (disableOnActivation) {
                     active = false;
-                    SoundBulletPassoverColor = Color.gray;
                 }
             }
         }

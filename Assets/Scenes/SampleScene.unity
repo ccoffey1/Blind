@@ -5823,7 +5823,7 @@ PrefabInstance:
       objectReference: {fileID: 1840701361}
     - target: {fileID: 3119659246191773854, guid: 552f971d5c0f2d649879ce12e77c9522, type: 3}
       propertyPath: CollisionModule.quality
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8897686214010714376, guid: 552f971d5c0f2d649879ce12e77c9522, type: 3}
       propertyPath: m_Name

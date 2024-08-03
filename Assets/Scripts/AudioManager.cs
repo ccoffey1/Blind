@@ -35,23 +35,25 @@ public class AudioManager : MonoBehaviour
 
     void Update()
     {
-        // TODO: bit of aaudioSourcei memory leak issue here -- any audiosources that were removed
+        // TODO: bit of aaudioSource memory leak issue here -- any audiosources that were removed
         // will be null here, but we'll still iterate over them unnecessarily
         foreach (AudioSource audioSource in FindObjectsOfType<AudioSource>(includeInactive: true).Where(x => !x.CompareTag("Background Audio")))
         {
-            AudioLowPassFilter filter = audioSource.gameObject.GetComponent<AudioLowPassFilter>();
-            Vector3 directionToPlayer = player.transform.position - audioSource.transform.position;
-            LayerMask layerMask = LayerMask.GetMask("SoundBarrier", "Player");
-            RaycastHit2D hit = Physics2D.Raycast(audioSource.transform.position, directionToPlayer, Mathf.Infinity, layerMask);
-            if (hit.collider != null && hit.collider.CompareTag("Player"))
-            {
-                Debug.DrawRay(audioSource.transform.position, directionToPlayer, Color.green);
-                filter.enabled = false;
-            }
-            else
-            {
-                filter.enabled = true;
-                Debug.DrawRay(audioSource.transform.position, directionToPlayer, Color.red);
+            AudioLowPassFilter filter = audioSource?.gameObject.GetComponent<AudioLowPassFilter>();
+            if (filter != null) {
+                Vector3 directionToPlayer = player.transform.position - audioSource.transform.position;
+                LayerMask layerMask = LayerMask.GetMask("SoundBarrier", "Player");
+                RaycastHit2D hit = Physics2D.Raycast(audioSource.transform.position, directionToPlayer, Mathf.Infinity, layerMask);
+                if (hit.collider != null && hit.collider.CompareTag("Player"))
+                {
+                    Debug.DrawRay(audioSource.transform.position, directionToPlayer, Color.green);
+                    filter.enabled = false;
+                }
+                else
+                {
+                    filter.enabled = true;
+                    Debug.DrawRay(audioSource.transform.position, directionToPlayer, Color.red);
+                }
             }
         }
     }

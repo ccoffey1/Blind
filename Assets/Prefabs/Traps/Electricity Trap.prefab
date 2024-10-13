@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6483057249503324716}
   - component: {fileID: 6483057249503324715}
   - component: {fileID: 6483057249503324717}
-  - component: {fileID: 8591365188548318368}
-  - component: {fileID: 9043161287153469204}
+  - component: {fileID: 2158829207456483247}
+  - component: {fileID: 4577627676360086126}
   m_Layer: 0
   m_Name: Electricity Trap
   m_TagString: Object Of Interest
@@ -48,9 +48,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a786e555e2850ac4480f2ed12d9ea80d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SoundBulletPassoverColor: {r: 1, g: 0, b: 0, a: 1}
-  projectSoundBullets: 1
-  soundBulletPulseDelay: 0.09
   activatedSound: {fileID: 8300000, guid: d6b901479bcb8fb4a94c87b830bab353, type: 3}
   active: 1
 --- !u!82 &6483057249503324715
@@ -199,7 +196,7 @@ PolygonCollider2D:
       - {x: 0.4860016, y: -0.5752361}
       - {x: 0.4635496, y: 0.51329654}
   m_UseDelaunayMesh: 0
---- !u!199 &8591365188548318368
+--- !u!199 &2158829207456483247
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -272,7 +269,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!198 &9043161287153469204
+--- !u!198 &4577627676360086126
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

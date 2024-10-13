@@ -10326,7 +10326,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4530925783564731235, guid: 35ea456db285ee44b88e4acaa0d71442, type: 3}
       propertyPath: on
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4530925783564731235, guid: 35ea456db285ee44b88e4acaa0d71442, type: 3}
       propertyPath: active
@@ -10352,6 +10352,10 @@ PrefabInstance:
       propertyPath: objectsToControl.Array.data[3]
       value: 
       objectReference: {fileID: 1983275699}
+    - target: {fileID: 4530925783564731235, guid: 35ea456db285ee44b88e4acaa0d71442, type: 3}
+      propertyPath: activatablesToToggle.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4530925783564731236, guid: 35ea456db285ee44b88e4acaa0d71442, type: 3}
       propertyPath: m_Size.y
       value: 0.39386678

@@ -45,6 +45,8 @@ public class ElectricityTrap : Activatable
     public override void Deactivate() {
         active = false;
         audioSource.Stop();
-        particles.Stop();
+        if (particles.isPlaying) {
+            particles.Stop();
+        }
     }
 }

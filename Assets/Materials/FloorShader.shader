@@ -59,5 +59,4 @@ Shader "Custom/FloorShader"
             ENDCG
         }
     }
-
 }

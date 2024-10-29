@@ -9,7 +9,7 @@ Shader "Custom/SoundWaveShader"
     }
 
     Category {
-        Tags { "Queue"="Geometry-1" "IgnoreProjector"="True" "RenderType"="Transparent" "PreviewType"="Plane" }
+        Tags { "Queue"="Geometry-1" "RenderType"="Transparent" }
         Blend One OneMinusSrcAlpha
         ColorMask RGB
         Cull Off Lighting Off ZWrite Off

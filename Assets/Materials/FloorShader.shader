@@ -7,6 +7,7 @@ Shader "Custom/FloorShader"
     }
     SubShader
     {
+        Tags { "RenderType"="Opaque" "Queue"="Transparent" }
 
         Pass
         {
@@ -58,4 +59,5 @@ Shader "Custom/FloorShader"
             ENDCG
         }
     }
+
 }
